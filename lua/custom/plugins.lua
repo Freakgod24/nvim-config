@@ -91,6 +91,10 @@ local plugins = {
     "tpope/vim-surround",
     event = "BufEnter"
   },
+  {
+    "matze/vim-move",
+    event = "Bufenter"
+  },
   -- Compilers
   {
     "Civitasv/cmake-tools.nvim",
