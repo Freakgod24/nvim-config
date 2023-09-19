@@ -1,0 +1,31 @@
+// ----- Windows ------ //
+ 
+1. Install Chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+2. Install Neovim
+choco install -y neovim
+
+3. Install Toolchain
+choco install -y LLVM
+
+4. Install Node Package Manager
+choco install -y nodejs-lts 
+
+5. Install Python3
+choco install -y python3
+
+6. Install Nerd Font
+choco install -y nerds-fonts-jetbrainsmono
+In Windows Terminal, 
+C-, -> Profiles -> Defaults -> Text -> Font face = JetbrainsMono Nerd Font
+
+7. Install custom config
+~/AppData/Local/nvim
+
+8. Restart terminal
+
+9. Launch nvim
+
+10. Ensure everything installed
+:MasonInstallAll
