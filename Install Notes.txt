@@ -16,7 +16,7 @@ choco install -y nodejs-lts
 choco install -y python3
 
 6. Install Nerd Font
-choco install -y nerds-font-jetbrainsmono
+choco install -y nerd-fonts-jetbrainsmono
 In Windows Terminal, 
 C-, -> Profiles -> Defaults -> Text -> Font face = JetbrainsMono Nerd Font
 
