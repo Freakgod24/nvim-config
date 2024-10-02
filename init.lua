@@ -4,7 +4,7 @@ vim.g.have_nerd_font = true
 
 -- NOTE: *** Vim Options ***
 
-vim.opt.autochdir = true
+vim.opt.autochdir = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
@@ -507,6 +507,11 @@ require("lazy").setup({
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
+
+			-- Automatically change current directory
+			-- Will try to find the root. Default (.git, Makefile)
+			require("mini.misc").setup()
+			MiniMisc.setup_auto_root()
 
 			local statusline = require("mini.statusline")
 			statusline.setup({ use_icons = vim.g.have_nerd_font })
