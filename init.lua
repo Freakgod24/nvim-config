@@ -637,6 +637,16 @@ require("lazy").setup({
 			},
 		},
 	},
+
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").opts.preview_filter = function()
+				return false
+			end
+			vim.keymap.set({ "n" }, "<BS>", "<Plug>(leap)")
+		end,
+	},
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {
