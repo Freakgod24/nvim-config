@@ -39,20 +39,26 @@ local function create_floating_window(opts)
 	return { buf = buf, win = win }
 end
 
-local toggle_terminal = function()
+local toggle_terminal = function(opts)
 	-- If the floating windows is not on screen, create a new one.
 	if not vim.api.nvim_win_is_valid(state.floating.win) then
 		state.floating = create_floating_window({ buf = state.floating.buf })
 
 		-- If the state buffer is not a terminal, launch a new one.
 		if vim.bo[state.floating.buf].buftype ~= "terminal" then
-			vim.cmd.terminal()
+			vim.cmd(":terminal powershell")
 		end
 
 		-- Always show the terminal in insert mode.
 		vim.cmd(":startinsert")
 
-	-- If the floating windows is on screen, hide it.
+		-- If a command is provided, execute the command.
+		if opts ~= nil and #opts.args > 0 then
+			local esc_key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+			vim.api.nvim_feedkeys(esc_key .. opts.args .. "\r", "n", false)
+		end
+
+		-- If the floating windows is on screen, hide it.
 	else
 		vim.api.nvim_win_hide(state.floating.win)
 	end
@@ -61,7 +67,6 @@ end
 --
 -- NOTE: Keymaps & Settings
 
-vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
+vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, { nargs = "?" })
 vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_terminal)
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-vim.o.shell = "powershell"
+vim.keymap.set("t", "<esc><esc>", toggle_terminal)
