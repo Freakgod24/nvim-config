@@ -1,12 +1,11 @@
-return
-{
+return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			{ "j-hui/fidget.nvim",       opts = {} }, -- Status updates bottom right of the screen
+			{ "j-hui/fidget.nvim", opts = { notification = { window = { winblend = 0 } } } }, -- Status updates bottom right of the screen
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
@@ -23,7 +22,7 @@ return
 			local formatters = {
 				stylua = {},
 				black = {},
-				luaformatter = {}
+				luaformatter = {},
 			}
 
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -68,5 +67,5 @@ return
 				},
 			})
 		end,
-	}
+	},
 }
