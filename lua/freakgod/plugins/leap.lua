@@ -1,5 +1,4 @@
-return
-{
+return {
 	{
 		"ggandor/leap.nvim",
 		config = function()
@@ -8,5 +7,5 @@ return
 			end
 			vim.keymap.set({ "n" }, "s", "<Plug>(leap)")
 		end,
-	}
+	},
 }
