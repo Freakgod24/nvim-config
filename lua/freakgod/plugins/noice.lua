@@ -25,6 +25,12 @@ return {
 						cmdline = { pattern = "^:", icon = ":", lang = "vim" },
 					},
 				},
+				routes = {
+					{
+						view = "notify",
+						filter = { event = "msg_showmode" },
+					},
+				},
 			})
 		end,
 	},
