@@ -18,6 +18,7 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv-gv", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Write" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>n", ":vnew<CR>:set filetype=markdown<CR>", { desc = "Open a new [n]otes buffer" })
 
 --
 -- NOTE: *** Lua Keymaps ***
