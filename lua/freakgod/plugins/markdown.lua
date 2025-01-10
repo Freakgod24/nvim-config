@@ -3,11 +3,31 @@ return {
 		"bullets-vim/bullets.vim",
 		config = function()
 			vim.g.bullets_delete_last_bullets_if_empty = 1
-		end
+		end,
 	},
 	{
-		"lukas-reineke/headlines.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = true, -- or `opts = {}`
+		"preservim/vim-markdown",
+		config = function()
+			-- Customize the folded text. Right now, simply triple dots.
+			function MarkdownFoldText()
+				return "..."
+			end
+
+			-- Use an autocommand to set foldtext after the file is loaded
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "markdown",
+				callback = function()
+					vim.opt_local.foldlevel = 99 -- All fold opens
+					vim.opt_local.foldtext = "v:lua.MarkdownFoldText()"
+					vim.opt_local.fillchars = "fold: " -- Remove trailing dots
+					vim.api.nvim_set_hl(0, "Folded", { link = "Normal" }) -- Use the "Normal" from the colorscheme
+				end,
+			})
+		end,
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
+		opts = {},
 	},
 }
