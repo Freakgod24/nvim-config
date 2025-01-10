@@ -1,12 +1,14 @@
 return {
 	{
 		"bullets-vim/bullets.vim",
+		ft = "markdown",
 		config = function()
 			vim.g.bullets_delete_last_bullets_if_empty = 1
 		end,
 	},
 	{
 		"preservim/vim-markdown",
+		ft = "markdown",
 		config = function()
 			-- Customize the folded text. Right now, empty line.
 			function MarkdownFoldText()
@@ -27,6 +29,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
+		ft = "markdown",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
 		opts = {},
 	},
