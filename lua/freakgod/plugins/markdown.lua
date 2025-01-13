@@ -31,6 +31,16 @@ return {
 		"MeanderingProgrammer/render-markdown.nvim",
 		ft = "markdown",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
-		opts = {},
+		config = function()
+			require('render-markdown').setup({
+				code = {
+					sign = false,
+					disable_background = true,
+					border = 'none'
+				},
+			})
+			vim.cmd("highlight @markup.raw.markdown_inline guibg=None")
+			vim.cmd("highlight @markup.strong cterm=bold gui=bold guifg=#ff966c")
+		end
 	},
 }
