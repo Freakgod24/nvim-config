@@ -30,6 +30,10 @@ return {
 						view = "notify",
 						filter = { event = "msg_showmode" },
 					},
+					{
+						view = "split",
+						filter = { event = "msg_show", min_height = 5 },
+					},
 				},
 			})
 		end,
