@@ -22,6 +22,7 @@ return {
 					vim.opt_local.foldlevel = 99                     -- All fold opens
 					vim.opt_local.foldtext = "v:lua.MarkdownFoldText()"
 					vim.opt_local.fillchars = "fold: "               -- Remove trailing dots
+					vim.opt_local.fillchars = { eob = ' ' }
 					vim.api.nvim_set_hl(0, "Folded", { link = "Normal" }) -- Use the "Normal" from the colorscheme
 				end,
 			})
@@ -43,4 +44,15 @@ return {
 			vim.cmd("highlight @markup.strong cterm=bold gui=bold guifg=#ff966c")
 		end
 	},
+	{
+		"sotte/presenting.nvim",
+		config = function()
+			require('presenting').setup({
+				options = {
+					width = 150
+				}
+			})
+		end,
+		cmd = { "Presenting" },
+	}
 }
