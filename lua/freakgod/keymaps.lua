@@ -1,7 +1,7 @@
 --
 -- NOTE: *** General Keymaps ***
 
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear highlights after searches
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")                               -- Clear highlights after searches
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.setloclist, { desc = "Show [d]iagnostic (Quickfix)" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }) -- Or do <C-\><C-n> if not working
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -20,6 +20,8 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Write" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>n", ":vnew<CR>:set filetype=markdown<CR>", { desc = "Open a new [n]otes buffer" })
 vim.keymap.set("n", "<C-a>", "ggVG")
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
 
 --
 -- NOTE: *** Lua Keymaps ***
@@ -27,3 +29,5 @@ vim.keymap.set("n", "<C-a>", "ggVG")
 vim.keymap.set("n", "<space>cs", ":source %<CR>", { desc = "[S]ource current file" })
 vim.keymap.set("n", "<space>cx", ":.lua<CR>", { desc = "E[x]ecute current line in Lua" })
 vim.keymap.set("v", "<space>cx", ":lua<CR>", { desc = "E[x]ecute selection in Lua" })
+
+vim.keymap.set("n", "<leader>dp", ":Presenting<CR>", { desc = "Present document" })
