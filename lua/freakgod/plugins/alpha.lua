@@ -15,6 +15,27 @@ return {
 				return string.rep(" ", leftPadding) .. text .. string.rep(" ", rightPadding)
 			end
 
+			local function set_dynamic_layout()
+				local total_height = vim.fn.winheight(0)
+				local header_height = #dashboard.section.header.val
+				local footer_height = #dashboard.section.footer.val
+				local button_height = #dashboard.section.buttons.val
+
+				local space_available = total_height - (header_height + footer_height + button_height)
+				local padding_top = math.floor(space_available * 0.3)
+				local padding_middle = math.floor(space_available * 0.4)
+				local padding_bottom = space_available - (padding_top + padding_middle)
+
+				dashboard.opts.layout = {
+					{ type = "padding", val = padding_top },
+					{ type = "text",    val = dashboard.section.header.val,  opts = { position = "center", hl = "Type" } },
+					{ type = "padding", val = padding_middle },
+					{ type = "group",   val = dashboard.section.buttons.val, opts = { position = "center" } },
+					{ type = "padding", val = padding_bottom },
+					{ type = "text",    val = dashboard.section.footer.val,  opts = { position = "center", hl = "Number" } },
+				}
+			end
+
 			local tryFindGitFiles = function()
 				local builtin = require("telescope.builtin")
 				local status, err = pcall(builtin.git_files)
@@ -25,20 +46,20 @@ return {
 
 			-- Set header
 			dashboard.section.header.val = {
-				"                                                     ",
-				"                                                     ",
-				"                                                     ",
-				"                                                     ",
-				"                                                     ",
-				"                                                     ",
-				"                                                     ",
+				-- "                                                     ",
+				-- "                                                     ",
+				-- "                                                     ",
+				-- "                                                     ",
+				-- "                                                     ",
+				-- "                                                     ",
+				-- "                                                     ",
 				"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
 				"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
 				"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
 				"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
 				"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
 				"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-				"                                                     ",
+				-- "                                                     ",
 			}
 
 			-- Set menu
@@ -57,10 +78,10 @@ return {
 			}
 
 			dashboard.section.footer.val = {
-				"",
-				"",
-				"",
-				"",
+				-- "",
+				-- "",
+				-- "",
+				-- "",
 				centerText("🔧 Let's Code Something Amazing Today! 🔧", 50),
 				" ",
 				centerText(os.date("%H:%M"), 50),
@@ -68,11 +89,22 @@ return {
 				centerText("  v" .. v.major .. "." .. v.minor .. "." .. v.patch, 50),
 			}
 
+			set_dynamic_layout()
+
 			-- Send config to alpha
 			alpha.setup(dashboard.opts)
 
 			-- Disable folding on alpha buffer
 			vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
+			--
+			-- Auto-update layout on window resize
+			vim.api.nvim_create_autocmd("VimResized", {
+				pattern = "*",
+				callback = function()
+					set_dynamic_layout()
+					alpha.redraw()
+				end,
+			})
 		end,
 	},
 }
