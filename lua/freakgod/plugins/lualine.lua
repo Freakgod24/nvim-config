@@ -70,7 +70,7 @@ return {
 				component_separators = "",
 				section_separators = { left = "", right = "" },
 				globalstatus = true,
-				disabled_filetypes = { statusline = { "alpha" } },
+				disabled_filetypes = { statusline = { "snacks_dashboard" } },
 			},
 			sections = {
 				lualine_a = {
