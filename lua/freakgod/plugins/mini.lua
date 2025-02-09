@@ -21,6 +21,8 @@ return {
 			-- Will try to find the root. Default (.git, Makefile)
 			require("mini.misc").setup()
 			MiniMisc.setup_auto_root()
+
+			require("mini.diff").setup()
 		end,
 	},
 }

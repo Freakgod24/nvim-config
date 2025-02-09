@@ -8,6 +8,15 @@ return
   lazy = false,
   opts = {
     bigfile = { enabled = true },
+    zen = {
+      toggles = {
+        dim = false,
+        git_signs = false,
+        line_number = false,
+        mini_diff_signs = false,
+        indent = false,
+      }
+    },
     dashboard = {
       enabled = true,
       preset = {
@@ -35,14 +44,26 @@ return
         },
       }
     },
-    -- indent = { enabled = true },
+    indent = { enabled = true },
     input = { enabled = true },
     git = { enabled = true },
     picker = { enabled = true },
     notifier = { enabled = false },
     quickfile = { enabled = true },
     scroll = { enabled = false },
-    statuscolumn = { enabled = true },
+    statuscolumn = {
+      enabled = true,
+      left = { "mark", "sign" }, -- priority of signs on the left (high to low)
+      right = { "fold", "git" }, -- priority of signs on the right (high to low)
+      folds = {
+        open = false,            -- show open fold icons
+        git_hl = false,          -- use Git Signs hl for fold icons
+      },
+      git = {
+        -- patterns to match Git signs
+        patterns = { "GitSign", "MiniDiffSign" },
+      },
+    },
     words = { enabled = true },
   },
 
