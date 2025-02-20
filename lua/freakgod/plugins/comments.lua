@@ -8,7 +8,7 @@ return
 		opts = { signs = false },
 		config = function()
 			require("todo-comments").setup({})
-			vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { desc = "[F]ind [T]odos" })
+			vim.keymap.set("n", "<leader>ft", ":Trouble todo<CR>", { desc = "[F]ind [T]odos" })
 			vim.keymap.set("n", "]t", function()
 				require("todo-comments").jump_next()
 			end, { desc = "Next Todo" })
