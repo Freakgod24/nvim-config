@@ -1,5 +1,5 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -22,13 +22,14 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.opt.fillchars = { eob = ' ' }
+vim.opt.fillchars = { eob = " " }
 vim.opt.inccommand = "split"
 -- vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.swapfile = false
 
 vim.schedule(function() -- Sync clipboard between OS and Neovim.
 	vim.opt.clipboard = "unnamedplus"
