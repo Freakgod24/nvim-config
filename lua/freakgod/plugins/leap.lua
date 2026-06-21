@@ -1,15 +1,15 @@
 return {
 	{
-		"ggandor/leap.nvim",
+		url = "https://codeberg.org/andyg/leap.nvim",
 		config = function()
 			require("leap").opts.preview_filter = function()
 				return false
 			end
 			vim.keymap.set({ "n" }, "s", function()
-				require('leap').leap {
+				require("leap").leap({
 					offset = 2,
-					target_windows = { vim.api.nvim_get_current_win() }
-				}
+					target_windows = { vim.api.nvim_get_current_win() },
+				})
 			end)
 		end,
 	},
