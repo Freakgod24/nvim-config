@@ -8,6 +8,12 @@ return {
 				sidebars = "transparent",
 				floats = "transparent",
 			},
+			on_highlights = function(highlights, colors)
+				highlights["@comment.multiline.go"] = {
+					fg = colors.blue2,
+					italic = true,
+				}
+			end,
 		})
 
 
